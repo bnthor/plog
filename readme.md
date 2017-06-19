@@ -21,6 +21,10 @@ EDITOR="vi"
 FILENAME="plog___$(date +%Y_%m_%d___%H_%M)"
 ``` 
 
+For example, you could use your iCloud folder as a $DIRECTORY. In your `~/.plogrc` write:
+
+`DIRECTORY="/Users/YOUR_NAME/Library/Mobile\ Documents/com\~apple\~CloudDocs/Notes"`
+
 ## Description
 
 Using `plog` in your terminal creates a plog entry in the `$DIRECTORY`, opens it with an `$EDITOR` named `plog___YEAR_MONTH_DAY___HOUR_MIN.md`. 
