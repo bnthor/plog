@@ -15,21 +15,27 @@ for arg in "$@"; do
   case "$arg" in
     "--title") set -- "$@" "-t" ;;
     "--generate") set -- "$@" "-g" ;;
+    "--audio") set -- "$@" "-a" ;;
     *) set -- "$@" "$arg"
   esac
 done
 
 # Reads parameters
-while getopts 't:g' flag; do
+while getopts 't:g:a' flag; do
     case "${flag}" in
         t) FILENAME="${OPTARG}" ;;
         g) GENERATE='true' ;;
+        a) AUDIO='true' ;;
         *) error "Unexpected option ${flag}" ;;
     esac
 done
 
 # Base command
-COMMAND="$EDITOR $DIRECTORY/$FILENAME.md"
+if [ $AUDIO ]; then
+    COMMAND="sox -d $DIRECTORY/$FILENAME.mp3"
+else
+    COMMAND="$EDITOR $DIRECTORY/$FILENAME.md"
+fi
 
 # If user had set the --generate flag
 if [ $GENERATE ]; then
